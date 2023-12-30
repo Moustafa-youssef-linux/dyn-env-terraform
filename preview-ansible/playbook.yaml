@@ -1,0 +1,39 @@
+- name: Amazon EFS
+  hosts: localhost
+  remote_user: tahara
+  gather_facts: false
+
+  tasks:
+  - name: Searching all EFS instances with tag Name = 'preview-apache'
+    community.aws.efs_info:
+       tags:
+           Name: preview-apache
+    register: result
+
+  - name: Print info of EFS
+    ansible.builtin.debug:
+        msg: |
+             {{ result["efs"][0]["filesystem_address"] }} 
+
+  - name: Creating temp mount points
+    ansible.builtin.file:
+      path: ~/preview-apache
+      state: directory
+
+  - name: mounting efs of apache
+    become: yes
+    become_user: root
+    ansible.posix.mount:
+      src: '{{ result["efs"][0]["filesystem_address"] }}'
+      path: ~/preview-apache
+      opts: nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport
+      boot: false
+      state: ephemeral
+      fstype: nfs
+
+  - name: test copying
+    ansible.builtin.command:
+      cmd: cp /etc/fstab ~/preview-apache
+
+
+

@@ -1,0 +1,70 @@
+[
+  {
+    "name": "backend",
+    "image": "996404169526.dkr.ecr.me-central-1.amazonaws.com/khaled-abdelhamid-inovola/tahara-backend-v8:staging",
+    "cpu": 0,
+    "essential": true,
+    "environment": [
+      {
+        "name": "DB_CONNECTION",
+        "value": "mysql"
+      },
+      {
+        "name": "DB_USERNAME",
+        "value": "admin"
+      },
+      {
+        "name": "DB_HOST",
+        "value": "tahara-master.ct6qrhy9qgd9.me-central-1.rds.amazonaws.com"
+      },
+      {
+        "name": "DB_PORT",
+        "value": "3306"
+      },
+      {
+        "name": "DB_DATABASE",
+        "value": "tahara_backend"
+      },
+      {
+        "name": "DB_PASSWORD",
+        "value": "twCKF8Mz2gYEWrQCWJce"
+      },
+      {
+        "name": "APP_URL",
+        "value": "https://preview-dashboard.tahara.sa"
+      }
+    ],
+    "mountPoints": [
+      {
+        "sourceVolume": "uploads",
+        "containerPath": "/var/www/html/public/uploads",
+        "readOnly": false
+      },
+      {
+        "sourceVolume": "apache",
+        "containerPath": "/etc/pki/tls/certs/web",
+        "readOnly": true
+      }
+    ],
+    "portMappings": [
+      {
+        "name": "backend-443-tcp",
+        "containerPort": 443,
+        "hostPort": 443,
+        "protocol": "tcp"
+      }
+    ],
+    "dockerLabels": {
+      "env": "preview"
+    },
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-create-group": "true",
+        "awslogs-group": "/ecs/staging-backend",
+        "awslogs-region": "me-central-1",
+        "awslogs-stream-prefix": "ecs"
+      }
+    }
+  }
+]

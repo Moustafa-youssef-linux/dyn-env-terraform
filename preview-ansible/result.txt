@@ -1,0 +1,67 @@
+ok: [localhost] => {
+    "msg": {
+        "changed": false,
+        "efs": [
+            {
+                "creation_time": "2023-04-18 17:38:49+02:00",
+                "creation_token": "console-87cd60eb-f177-4977-88c9-4e71295135d0",
+                "encrypted": true,
+                "file_system_arn": "arn:aws:elasticfilesystem:me-central-1:996404169526:file-system/fs-0321df351b83fa61a",
+                "file_system_id": "fs-0321df351b83fa61a",
+                "filesystem_address": "fs-0321df351b83fa61a.efs.me-central-1.amazonaws.com:/",
+                "kms_key_id": "arn:aws:kms:me-central-1:996404169526:key/dffc45bf-b023-4ce0-9f2f-aad86d3e0892",
+                "life_cycle_state": "available",
+                "mount_point": ".fs-0321df351b83fa61a.efs.me-central-1.amazonaws.com:/",
+                "mount_targets": [
+                    {
+                        "availability_zone_id": "mec1-az1",
+                        "availability_zone_name": "me-central-1a",
+                        "file_system_id": "fs-0321df351b83fa61a",
+                        "ip_address": "10.0.143.222",
+                        "life_cycle_state": "available",
+                        "mount_target_id": "fsmt-021878b8c0ee048ac",
+                        "network_interface_id": "eni-0480e9b7923f1b576",
+                        "owner_id": "996404169526",
+                        "security_groups": [
+                            "sg-082660e564235e365"
+                        ],
+                        "subnet_id": "subnet-0106d7b7dd47ddfbd",
+                        "vpc_id": "vpc-02fbd859e9353176a"
+                    },
+                    {
+                        "availability_zone_id": "mec1-az2",
+                        "availability_zone_name": "me-central-1b",
+                        "file_system_id": "fs-0321df351b83fa61a",
+                        "ip_address": "10.0.148.19",
+                        "life_cycle_state": "available",
+                        "mount_target_id": "fsmt-03b6a4523ae55af5b",
+                        "network_interface_id": "eni-0eece00f0793a62de",
+                        "owner_id": "996404169526",
+                        "security_groups": [
+                            "sg-082660e564235e365"
+                        ],
+                        "subnet_id": "subnet-0fd27e546e83a21e3",
+                        "vpc_id": "vpc-02fbd859e9353176a"
+                    }
+                ],
+                "name": "uploads",
+                "number_of_mount_targets": 2,
+                "owner_id": "996404169526",
+                "performance_mode": "generalPurpose",
+                "size_in_bytes": {
+                    "timestamp": "2023-07-24 15:09:01+02:00",
+                    "value": 31363072,
+                    "value_in_ia": 10715136,
+                    "value_in_standard": 20647936
+                },
+                "tags": {
+                    "Name": "uploads",
+                    "aws:elasticfilesystem:default-backup": "enabled"
+                },
+                "throughput_mode": "bursting"
+            }
+        ],
+        "failed": false
+    }
+}
+

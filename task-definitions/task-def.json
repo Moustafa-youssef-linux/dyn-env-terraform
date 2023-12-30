@@ -1,0 +1,152 @@
+{
+  "taskDefinitionArn": "arn:aws:ecs:me-central-1:996404169526:task-definition/preview-backend:2",
+  "containerDefinitions": [
+    {
+      "name": "backend",
+      "image": "996404169526.dkr.ecr.me-central-1.amazonaws.com/khaled-abdelhamid-inovola/tahara-backend-v8:staging",
+      "cpu": 0,
+      "portMappings": [
+        {
+          "name": "backend-443-tcp",
+          "containerPort": 443,
+          "hostPort": 443,
+          "protocol": "tcp"
+        }
+      ],
+      "essential": true,
+      "environment": [
+        {
+          "name": "DB_CONNECTION",
+          "value": "mysql"
+        },
+        {
+          "name": "DB_USERNAME",
+          "value": "admin"
+        },
+        {
+          "name": "DB_HOST",
+          "value": "tahara-master.ct6qrhy9qgd9.me-central-1.rds.amazonaws.com"
+        },
+        {
+          "name": "DB_PORT",
+          "value": "3306"
+        },
+        {
+          "name": "DB_DATABASE",
+          "value": "tahara_backend"
+        },
+        {
+          "name": "DB_PASSWORD",
+          "value": "twCKF8Mz2gYEWrQCWJce"
+        }
+      ],
+      "mountPoints": [
+        {
+          "sourceVolume": "uploads",
+          "containerPath": "/var/www/html/public/uploads",
+          "readOnly": false
+        },
+        {
+          "sourceVolume": "apache",
+          "containerPath": "/etc/pki/tls/certs/web",
+          "readOnly": true
+        }
+      ],
+      "volumesFrom": [],
+      "dockerLabels": {
+        "env": "preview"
+      },
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-create-group": "true",
+          "awslogs-group": "/ecs/staging-backend",
+          "awslogs-region": "me-central-1",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
+    }
+  ],
+  "family": "preview-backend",
+  "taskRoleArn": "arn:aws:iam::996404169526:role/ecs-exec-staging-task-role",
+  "executionRoleArn": "arn:aws:iam::996404169526:role/ecsTaskExecutionRole",
+  "networkMode": "awsvpc",
+  "revision": 2,
+  "volumes": [
+    {
+      "name": "uploads",
+      "efsVolumeConfiguration": {
+        "fileSystemId": "fs-0e75f0187aa443c78",
+        "rootDirectory": "/"
+      }
+    },
+    {
+      "name": "apache",
+      "efsVolumeConfiguration": {
+        "fileSystemId": "fs-00cf24c1202581e04",
+        "rootDirectory": "/"
+      }
+    }
+  ],
+  "status": "ACTIVE",
+  "requiresAttributes": [
+    {
+      "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+    },
+    {
+      "name": "ecs.capability.execution-role-awslogs"
+    },
+    {
+      "name": "ecs.capability.efsAuth"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.ecr-auth"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+    },
+    {
+      "name": "ecs.capability.efs"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.task-iam-role"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.25"
+    },
+    {
+      "name": "ecs.capability.execution-role-ecr-pull"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+    },
+    {
+      "name": "ecs.capability.task-eni"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
+    }
+  ],
+  "placementConstraints": [],
+  "compatibilities": [
+    "EC2",
+    "FARGATE"
+  ],
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
+  "cpu": "512",
+  "memory": "1024",
+  "runtimePlatform": {
+    "cpuArchitecture": "X86_64",
+    "operatingSystemFamily": "LINUX"
+  },
+  "registeredAt": "2023-07-03T15:31:41.449Z",
+  "registeredBy": "arn:aws:iam::996404169526:user/moustafa",
+  "tags": [
+    {
+      "key": "env",
+      "value": "preview"
+    }
+  ]
+}

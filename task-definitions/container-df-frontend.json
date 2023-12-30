@@ -1,0 +1,42 @@
+[
+
+
+    {
+      "name": "frontend",
+      "image": "996404169526.dkr.ecr.me-central-1.amazonaws.com/khaled-abdelhamid-inovola/tahara-frontend:staging",
+      "cpu": 0,
+      "portMappings": [
+        {
+          "name": "frontend-3000-tcp",
+          "containerPort": 3000,
+          "hostPort": 3000,
+          "protocol": "tcp"
+        }
+      ],
+      "essential": true,
+      "environment": [
+        {
+          "name": "BASE_URL",
+          "value": "https://preview-dashboard.tahara.sa:8443/"
+        },
+        {
+          "name": "API_BASE_URL",
+          "value": "https://preview-dashboard.tahara.sa:8443/api"
+
+        }
+      ],
+      "environmentFiles": [],
+      "mountPoints": [],
+      "volumesFrom": [],
+      "ulimits": [],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-create-group": "true",
+          "awslogs-group": "/ecs/staging-frontend",
+          "awslogs-region": "me-central-1",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
+    }
+]
